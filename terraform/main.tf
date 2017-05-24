@@ -3,7 +3,7 @@ variable "region" {
 }
 
 variable "domain_name" {
-  default = "conortek.net"
+  default = "https://s3-eu-west-1.amazonaws.com/conortek.net/"
 }
 
 provider "aws" {
@@ -43,9 +43,9 @@ resource "aws_s3_bucket" "wwwsite" {
 
 resource "aws_s3_bucket_object" "index_file" {
   bucket = "${var.domain_name}"
-  source = "../dist/index.html"
+  source = "index.html"
   key = "index.html"
-  etag = "${md5(file("../dist/index.html"))}"
+  etag = "${md5(file("index.html"))}"
   content_type = "text/html"
   depends_on = [
     "aws_s3_bucket.site"
@@ -54,9 +54,9 @@ resource "aws_s3_bucket_object" "index_file" {
 
 resource "aws_s3_bucket_object" "error_file" {
   bucket = "${var.domain_name}"
-  source = "../dist/error.html"
+  source = "error.html"
   key = "error.html"
-  etag = "${md5(file("../dist/error.html"))}"
+  etag = "${md5(file("error.html"))}"
   content_type = "text/html"
   depends_on = [
     "aws_s3_bucket.site"
@@ -65,9 +65,9 @@ resource "aws_s3_bucket_object" "error_file" {
 
 resource "aws_s3_bucket_object" "css_file" {
   bucket = "${var.domain_name}"
-  source = "../dist/assets/stylesheets/style.css"
+  source = "assets/stylesheets/style.css"
   key = "assets/stylesheets/style.css"
-  etag = "${md5(file("../dist/assets/stylesheets/style.css"))}"
+  etag = "${md5(file("assets/stylesheets/style.css"))}"
   content_type = "text/css"
   depends_on = [
     "aws_s3_bucket.site"
@@ -76,9 +76,9 @@ resource "aws_s3_bucket_object" "css_file" {
 
 resource "aws_s3_bucket_object" "image_file" {
   bucket = "${var.domain_name}"
-  source = "../dist/assets/images/image.jpeg"
+  source = "assets/images/image.jpeg"
   key = "assets/images/image.jpeg"
-  etag = "${md5(file("../dist/assets/images/image.jpeg"))}"
+  etag = "${md5(file("assets/images/image.jpeg"))}"
   content_type = "image/jpeg"
   depends_on = [
     "aws_s3_bucket.site"
