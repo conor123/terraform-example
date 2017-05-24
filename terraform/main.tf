@@ -1,9 +1,9 @@
 variable "region" {
-  default = "us-west-2"
+  default = "eu-west-1b"
 }
 
 variable "domain_name" {
-  default = "mikeball.me"
+  default = "conortek.net"
 }
 
 provider "aws" {
@@ -65,9 +65,9 @@ resource "aws_s3_bucket_object" "error_file" {
 
 resource "aws_s3_bucket_object" "css_file" {
   bucket = "${var.domain_name}"
-  source = "../dist/assets/stylesheets/application.css"
-  key = "assets/stylesheets/application.css"
-  etag = "${md5(file("../dist/assets/stylesheets/application.css"))}"
+  source = "../dist/assets/stylesheets/style.css"
+  key = "assets/stylesheets/style.css"
+  etag = "${md5(file("../dist/assets/stylesheets/style.css"))}"
   content_type = "text/css"
   depends_on = [
     "aws_s3_bucket.site"
@@ -76,10 +76,10 @@ resource "aws_s3_bucket_object" "css_file" {
 
 resource "aws_s3_bucket_object" "image_file" {
   bucket = "${var.domain_name}"
-  source = "../dist/assets/images/scape_long.png"
-  key = "assets/images/scape_long.png"
-  etag = "${md5(file("../dist/assets/images/scape_long.png"))}"
-  content_type = "image/png"
+  source = "../dist/assets/images/image.jpeg"
+  key = "assets/images/image.jpeg"
+  etag = "${md5(file("../dist/assets/images/image.jpeg"))}"
+  content_type = "image/jpeg"
   depends_on = [
     "aws_s3_bucket.site"
   ]
