@@ -11,6 +11,8 @@ variable "bucket_name" {
 }
 
 provider "aws" {
+  access_key = "${ACCESS_KEY_ID}"
+  secret_key = "${AWS_SECRET_ACCESS_KEY}"
   region = "${var.region}"
 }
 
